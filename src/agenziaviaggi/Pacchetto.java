@@ -14,11 +14,10 @@ public class Pacchetto {
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.postiTotali = postiTotali;
+		prenotazione = new Vector <Prenotazione>() ;
 	}
 	
-	
-	
-	
+		
 	public Vector <Prenotazione> getPrenotazione() {
 		return prenotazione;
 	}
@@ -33,9 +32,6 @@ public class Pacchetto {
 		}
 	}
 
-	
-
-	
 	public String getCodice() {
 		return codice;
 	}
@@ -52,13 +48,14 @@ public class Pacchetto {
 	public int getPostiDisponibili(){
 		
 		int r=0;
-		
+		int pdisp=0;
+		Prenotazione g;
 		for(int i=0;i<prenotazione.size();i++){
-			Prenotazione g = prenotazione.elementAt(i);
+			g = prenotazione.elementAt(i);
 			r += g.getPostiRichiesti();
-			
-		}	
-	return r;
+			}
+		pdisp = this.postiTotali - r;
+	return pdisp;
 	}
 	
 }	
