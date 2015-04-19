@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Pacchetto {
 	
+	
 	private String codice;
 	private String descrizione;
 	private int postiTotali;
@@ -11,9 +12,19 @@ public class Pacchetto {
 	
 	public Pacchetto(String codice, String descrizione, int postiTotali) {
 		super();
-		this.codice = codice;
-		this.descrizione = descrizione;
-		this.postiTotali = postiTotali;
+		if (codice != null){
+			this.codice = codice;
+		}
+		else 
+			throw new IllegalArgumentException("codice non valido");
+		
+		if((descrizione != null) && descrizione.length() > 0){
+			this.descrizione = descrizione;
+		}
+			
+		if (postiTotali > 0){
+			this.postiTotali = postiTotali;
+		}
 		prenotazione = new Vector <Prenotazione>() ;
 	}
 	
@@ -53,9 +64,16 @@ public class Pacchetto {
 		for(int i=0;i<prenotazione.size();i++){
 			g = prenotazione.elementAt(i);
 			r += g.getPostiRichiesti();
-			}
+		}
 		pdisp = this.postiTotali - r;
-	return pdisp;
+		return pdisp;
 	}
 	
+	@Override
+	public String toString() {
+		return "Pacchetto [codice=" + codice + ", descrizione=" + descrizione
+				+ ", postiTotali=" + postiTotali + ", n. prenotazioni="
+				+ prenotazione.size() + ", postiDisponibili="
+				+ getPostiDisponibili() + "]";
+	}
 }	

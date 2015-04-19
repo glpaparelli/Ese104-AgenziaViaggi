@@ -6,6 +6,7 @@ public class Filiale {
 
 	public Filiale(int numero) {
 		super();
+		
 		this.numero = numero;
 	}
 	
